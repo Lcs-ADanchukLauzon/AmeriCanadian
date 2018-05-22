@@ -7,24 +7,38 @@ import Foundation
 
 // INPUT
 // Global variable to use later in program
-var expectedCountOfWordsToTranslate = 3
+var expectedCountOfWordsToTranslate = 0
+while true {
+    print("How many words will be provided?")
+    
+    guard let input = readLine() else {
+        continue
+    }
+    
+    guard let intIntput = Int(input) else {
+        continue
+    }
+    
+    if intIntput < 0 || intIntput > 10 {
+        continue
+    }
+    
+    expectedCountOfWordsToTranslate = intIntput
+    break
+}
 
-// Write a loop to actually collect the expected count of words to be translated
+if expectedCountOfWordsToTranslate == 0 {
+    exit(9)
+}
 
 // PROCESS
-// Implement the primary logic of the problem here
-// Some output may be given here if you desire
+
 
 // NOTE:
 //
 // Some example code that may be useful
-var word = "tour"
-let isAmerican = word.hasSuffix("or")
-print(isAmerican)
-var reversedWord = String(word.reversed())
-print("The reversed word is: \(reversedWord)")
-var originalWord = String(reversedWord.reversed())
-print("The reversed word, reversed again is: \(originalWord)")
+
+
 
 // Example of how to collect multiple input lines
 for counter in 1...expectedCountOfWordsToTranslate {
@@ -39,8 +53,22 @@ for counter in 1...expectedCountOfWordsToTranslate {
         continue
     }
     
-    // Now we have the line, we can print it out, analyze it as needed, et cetera
-    print(givenInput)
+   
+    let word = givenInput
+    var newWord = ""
+    if word.count < 4 {
+        print("The translation is \(word)")
+    } else if word.hasSuffix("or") {
+        for character in 0...word.count - 2 {
+            newWord += "\(character)"
+       }
+        newWord += "o"
+        newWord += "u"
+        newWord += "r"
+        print("The translation is \(newWord)")
+    } else {
+        print("The translation is \(word)")
+    }
     
 }
 
